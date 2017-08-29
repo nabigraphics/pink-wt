@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 
+import * as Routefolder from './route';
+
 class App extends Component {
     constructor(props){
         super(props);
@@ -18,7 +20,11 @@ class App extends Component {
             return (
                 <Router>
                     <div>
-                        Yo!
+                        <Switch>
+                            <Route exact path="/" component={this.props.logged ? Routefolder.Adminpage : Routefolder.Login} />
+                            <Route exact path="/s/:share" component={Routefolder.Share} />
+                            <Route component={Routefolder.Notfound}/>
+                        </Switch>
                     </div>
                 </Router>
             );
