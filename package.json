@@ -8,7 +8,7 @@
         "build": "webpack -p",
         "dev": "webpack-dev-server",
         "server": "nodemon server/server.js",
-        "apiserver": "nodemon server/apiserver.js"
+        "init": "node server/init.js"
     },
     "dependencies": {
         "axios": "^0.16.2",
@@ -22,12 +22,15 @@
         "koa-router": "^7.2.1",
         "koa-session": "^5.5.0",
         "koa-static": "^4.0.1",
+        "passport-local": "^1.0.0",
         "promise-mysql": "^3.0.2",
         "react": "^15.6.1",
         "react-dom": "^15.6.1",
         "react-dropzone": "^4.0.1",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.1.2",
+        "react-transition-group": "^2.2.0",
+        "reactstrap": "^4.8.0",
         "redis": "^2.8.0",
         "redux": "^3.7.2",
         "redux-thunk": "^2.2.0",
