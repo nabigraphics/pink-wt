@@ -17,6 +17,7 @@ const Koa = require('koa');
 const koaHelmet = require('koa-helmet');
 const koaRouter = require('koa-router');
 const passport = require('koa-passport');
+const pp_setting = require('./passport')(passport,'userid','userpw');
 const koaServe = require('koa-static');
 const koaSession = require('koa-session');
 const redisStore = require('koa-redis');
@@ -29,9 +30,9 @@ const thumbnails_directory = path.resolve(__dirname + "/../uploads/thumbnails/")
 // uuid v5
 const crypto = require('crypto');
 const uuidv5 = require('uuid/v5');
-// mariadb database
-const mariadb = require('promise-mysql');
-var connection = mariadb.createPool(config.database);
+
+// database
+const querynyaa = require('./query');
 
 const app = new Koa();
 app.use(koaHelmet());
@@ -57,17 +58,37 @@ const sessionConfig = {
     rolling: false,
     store:new redisStore()
 };
+
 app.keys = [config.session_secret];
 app.use(koaParser({formLimit:"1024mb"}));
 app.use(koaSession(sessionConfig,app));
+app.use(passport.initialize());
+app.use(passport.session());
+
+function LoginCheckMiddleware(ctx,next){
+    if(ctx.isAuthenticated()){
+        return next();
+    }else{
+        ctx.status = 403;
+    }
+}
+router.post('/login',passport.authenticate('local'), (ctx,next) => {
+    ctx.body = {
+        status:"success"
+    }
+})
+
+router.post('/auth', LoginCheckMiddleware, (ctx,next) => {
+    ctx.body = {
+        status:"success",
+        userid:ctx.state.user.userid
+    }
+})
 
 app.use(koaServe(path.resolve(__dirname + '/../dist/'),{maxAge:200}));
-
 app.use(router.routes());
-
 // page404.html load
 const page404 = fs.readFileSync((path.resolve(__dirname + '/../dist/index.html')),'utf8');
-
 // Error page Setting.
 app.use(async (ctx,next) => {
     switch (ctx.status){
@@ -77,5 +98,4 @@ app.use(async (ctx,next) => {
         break;
     }
 })
-
 app.listen(port);
