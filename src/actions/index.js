@@ -2,12 +2,26 @@ import * as types from './ActionTypes';
 import axios from 'axios';
 
 //Login.
-export function authCheckRequest() {
+export function loginRequest(data){
   return (dispatch) => {
-    return axios.post('/link_start').then((res) => {
-      // console.log(res.data);
+    return axios.post('/login',data).then((res) => {
       if(res.data.status == "success"){
         dispatch(loginSuccess(res.data.username,res.data.user_profile));
+      }else{
+        dispatch(loginFailure());
+      }
+    }).catch((err) => {
+      dispatch(loginFailure());
+    });
+  }
+}
+
+export function authCheckRequest() {
+  return (dispatch) => {
+    return axios.post('/auth').then((res) => {
+      // console.log(res.data);
+      if(res.data.status == "success"){
+        dispatch(loginSuccess(res.data.userid));
       }else{
         dispatch(loginFailure());
       }
