@@ -1,9 +1,7 @@
-$popover-arrow-border:10px;
+
 .header{
     background:#fff;
     height:70px;
-    // display: flex;
-    // align-items: center;
     button{
         background:transparent;
         border:0;
@@ -36,22 +34,12 @@ $popover-arrow-border:10px;
         }
     }
     .upload {
-        // padding:15px;
-        // background:#000;
         padding:7px 21px;
-        // border:1px solid #000;
         cursor: pointer;
-        // ul:first-child{
-        //     margin-left:14px;
-        // }
-        // color:#000;
-        // border:1px solid #000;
         color:$basecolor-blue;
-        // font-weight: bold;
         letter-spacing: 1px;
         font-size:10pt;
         border-radius:100px;
-        // background:$basecolor-blue;
         border:1px solid rgba($basecolor-blue,0.5);
     }
     .upload:hover{
@@ -62,8 +50,6 @@ $popover-arrow-border:10px;
         margin-right:5px;
     }
     .admin{
-        // background:$basecolor-blue;
-        // border-radius: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -74,7 +60,6 @@ $popover-arrow-border:10px;
         text-decoration: underline;
         padding:14px 0px;
         cursor: pointer;
-        // border-bottom:3px solid $basecolor-black;
         box-sizing: border-box;
 
     }
@@ -84,6 +69,7 @@ $popover-arrow-border:10px;
     .header{
         height:auto;
         .header-menu{
+            align-items: unset;
             .header-item:first-child{
                 margin-right:0;
             }
@@ -97,7 +83,7 @@ $popover-arrow-border:10px;
         }
         .admin{
             width:100%;
-            text-align: center;
+            height:auto;
         }
     }
 }
