@@ -1,0 +1,103 @@
+$popover-arrow-border:10px;
+.header{
+    background:#fff;
+    height:70px;
+    // display: flex;
+    // align-items: center;
+    button{
+        background:transparent;
+        border:0;
+        outline:0;
+    }
+    button:focus{
+        outline:0;
+    }
+    .brandlogo{
+        width:auto;
+        color:$basecolor-blue;
+    }
+    .brandlogo:hover{
+        color:$basecolor-blue;
+        text-decoration: none;
+    }
+    .brandlogo:focus{
+        color:$basecolor-blue;
+        text-decoration: none;
+    }
+    .brandlogo:active{
+        color:$basecolor-blue;
+        text-decoration: none;
+    }
+    .header-menu{
+        display: flex;
+        align-items: center;
+        .header-item:first-child{
+            margin-right:14px;
+        }
+    }
+    .upload {
+        // padding:15px;
+        // background:#000;
+        padding:7px 21px;
+        // border:1px solid #000;
+        cursor: pointer;
+        // ul:first-child{
+        //     margin-left:14px;
+        // }
+        // color:#000;
+        // border:1px solid #000;
+        color:$basecolor-blue;
+        // font-weight: bold;
+        letter-spacing: 1px;
+        font-size:10pt;
+        border-radius:100px;
+        // background:$basecolor-blue;
+        border:1px solid rgba($basecolor-blue,0.5);
+    }
+    .upload:hover{
+        color:#fff;
+        background:$basecolor-blue;
+    }
+    .upload:first-child{
+        margin-right:5px;
+    }
+    .admin{
+        // background:$basecolor-blue;
+        // border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height:70px;
+        color:$basecolor-black;
+        font-size:10pt;
+        font-weight: bold;
+        text-decoration: underline;
+        padding:14px 0px;
+        cursor: pointer;
+        // border-bottom:3px solid $basecolor-black;
+        box-sizing: border-box;
+
+    }
+}
+
+@media only screen and (max-width :575px) {
+    .header{
+        height:auto;
+        .header-menu{
+            .header-item:first-child{
+                margin-right:0;
+            }
+        }
+        .upload{
+            margin:14px 5px;
+        }
+        .upload:first-child{
+            margin:14px 5px;
+            margin-bottom:5px;
+        }
+        .admin{
+            width:100%;
+            text-align: center;
+        }
+    }
+}
