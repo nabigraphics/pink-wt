@@ -23,10 +23,23 @@ const koaSession = require('koa-session');
 const redisStore = require('koa-redis');
 const koaParser = require('koa-bodyparser');
 const koaMulter = require('koa-multer');
+const multernyaa = require('./multer');
 // multer setting.
-const uploads_directory = path.resolve(__dirname + "/../uploads/");
-const files_directory = path.resolve(__dirname + "/../uploads/files/");
-const thumbnails_directory = path.resolve(__dirname + "/../uploads/thumbnails/");
+
+const storage = koaMulter.diskStorage({
+    destination: async (req,file,cb) => {
+        let result = await multernyaa.destination_check(req);
+        cb(null,result);
+    },filename: async (req,file,cb) => {
+        let result = await multernyaa.makefilename(req,file);
+        cb(null,result);
+    }
+});
+
+const upload = koaMulter({ storage:storage });
+const uploader = upload.single('file');
+
+
 // uuid v5
 const crypto = require('crypto');
 const uuidv5 = require('uuid/v5');
@@ -72,6 +85,8 @@ function LoginCheckMiddleware(ctx,next){
         ctx.status = 403;
     }
 }
+
+//Authentication router.
 router.post('/login',passport.authenticate('local'), (ctx,next) => {
     ctx.body = {
         status:"success",
@@ -86,13 +101,21 @@ router.post('/logout', LoginCheckMiddleware, (ctx,next) => {
     }
 })
 
-
 router.post('/auth', LoginCheckMiddleware, (ctx,next) => {
     ctx.body = {
         status:"success",
         userid:ctx.state.user.userid
     }
 })
+//////////////////////////
+
+//Upload router.
+router.post('/upload', LoginCheckMiddleware, uploader, (ctx,next) => {
+    const hash = ctx.req.file.filename.slice(0,ctx.req.file.filename.lastIndexOf("."));
+    ctx.body = {status:"success",hash:hash};
+})
+//////////////////////////
+
 
 app.use(koaServe(path.resolve(__dirname + '/../dist/'),{maxAge:200}));
 app.use(router.routes());
@@ -107,4 +130,5 @@ app.use(async (ctx,next) => {
         break;
     }
 })
+//server listen.
 app.listen(port);
