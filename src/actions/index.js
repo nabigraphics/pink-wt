@@ -6,12 +6,26 @@ export function loginRequest(data){
   return (dispatch) => {
     return axios.post('/login',data).then((res) => {
       if(res.data.status == "success"){
-        dispatch(loginSuccess(res.data.username,res.data.user_profile));
+        dispatch(loginSuccess(res.data.userid));
       }else{
         dispatch(loginFailure());
       }
     }).catch((err) => {
       dispatch(loginFailure());
+    });
+  }
+}
+//Logout.
+export function logoutRequest(){
+  return (dispatch) => {
+    return axios.post('/logout').then((res) => {
+      if(res.data.status == "success"){
+        dispatch(loginFailure());
+      }else{
+        return false;
+      }
+    }).catch((err) => {
+      return false;
     });
   }
 }
@@ -31,11 +45,10 @@ export function authCheckRequest() {
   }
 }
 
-export function loginSuccess(username,user_profile) {
+export function loginSuccess(userid) {
   return {
       type: types.AUTH_LOGIN_SUCCESS,
-      username,
-      user_profile
+      userid
   };
 }
 

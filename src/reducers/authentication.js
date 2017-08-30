@@ -2,8 +2,7 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     logged:false,
-    username:"",
-    user_profile:"",
+    userid:"",
     loading:true
 }
 
@@ -13,8 +12,7 @@ export default function (state = initialState, action){
         return {
             ...state,
             logged:true,
-            username:action.username,
-            user_profile:action.user_profile,
+            userid:action.userid,
             loading:false
         }
     case types.AUTH_LOGIN_FAILURE:

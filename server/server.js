@@ -74,9 +74,18 @@ function LoginCheckMiddleware(ctx,next){
 }
 router.post('/login',passport.authenticate('local'), (ctx,next) => {
     ctx.body = {
+        status:"success",
+        userid:ctx.state.user.userid
+    }
+})
+
+router.post('/logout', LoginCheckMiddleware, (ctx,next) => {
+    ctx.session = null;
+    ctx.body = {
         status:"success"
     }
 })
+
 
 router.post('/auth', LoginCheckMiddleware, (ctx,next) => {
     ctx.body = {
