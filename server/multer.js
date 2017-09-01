@@ -1,6 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const hashgen = require('./hashgen');
+exports.uploads_directory = path.resolve(__dirname + "/../uploads/");
+exports.files_directory = path.resolve(__dirname + "/../uploads/files/");
+exports.thumbnails_directory = path.resolve(__dirname + "/../uploads/thumbnails/");
 async function mkdirSync (directory) {
     if(fs.existsSync(directory)){
         return;
@@ -23,18 +26,15 @@ async function dirCheckSync (result) {
 }
 
 exports.destination_check = async function(req) {
-    const uploads_directory = path.resolve(__dirname + "/../uploads/");
-    const files_directory = path.resolve(__dirname + "/../uploads/files/");
-    const thumbnails_directory = path.resolve(__dirname + "/../uploads/thumbnails/");
-    const users_directory = await path.resolve(files_directory + "/" + req.user.uuid + "/");
-    const users_thumb_directory = await path.resolve(thumbnails_directory + "/" + req.user.uuid + "/");
-    const chkd_result = await [uploads_directory,files_directory,thumbnails_directory,users_directory,users_thumb_directory];
+    const users_directory = await path.resolve(exports.files_directory + "/" + req.user.uuid + "/");
+    const users_thumb_directory = await path.resolve(exports.thumbnails_directory + "/" + req.user.uuid + "/");
+    const chkd_result = await [exports.uploads_directory,exports.files_directory,exports.thumbnails_directory,users_directory,users_thumb_directory];
     await dirCheckSync(chkd_result);
-    return users_directory;
+    return await users_directory;
 }
 
 exports.makefilename = async function(req,file){
     let hash = await hashgen.file(req,file);
     const filetype = file.originalname.substring(file.originalname.lastIndexOf("."),file.originalname.length);
-    return hash+filetype;
+    return await hash+filetype;
 }
