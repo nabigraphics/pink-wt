@@ -2,3 +2,4 @@
 server/config.json
 server/hashgen.js
 /uploads
+/dist/fonts
