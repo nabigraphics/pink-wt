@@ -1,0 +1,16 @@
+@import "./file-icon";
+
+.file-info{
+    flex-grow:2;
+}
+.file-progress{
+    height:6px;
+    .progress-bar{
+        background-color:$basecolor-blue;
+    }
+}
+.file-sharetext{
+    color:$basecolor-blue;
+    margin-left:20px;
+    margin-right:10px;
+}

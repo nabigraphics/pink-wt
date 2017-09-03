@@ -3,6 +3,7 @@ $popover-arrow-border:10px;
     list-style: none;
     margin:0;
     padding:0;
+    // position: fixed;
     position: absolute;
     margin-top:10px;
     z-index: 999;
@@ -52,36 +53,4 @@ $popover-arrow-border:10px;
 }
 .popover.active{
     display: block;
-}
-@media only screen and (max-width :575px) {
-    .popover{
-        list-style: none;
-        margin:0;
-        padding:0;
-        position: relative;
-        top:0;
-        right:0;
-        border:0;
-        width:100%;
-        background:transparent;
-        box-shadow: 0 0 0 rgba(#000,0);
-        transform: translate(0px, 0px);
-        li{
-            cursor: pointer;
-            padding:7px 30px;
-            border-bottom:1px solid rgba(#000,0.05);
-        }
-        li:hover{
-            background:$basecolor-background;
-        }
-        li:nth-child(2n+1) {
-            border-top:1px solid rgba(#000,0.05);
-        }
-    }
-    .popover:before{
-        display: none;
-    }
-    .popover:after{
-        display: none;
-    }
 }

@@ -1,0 +1,40 @@
+$image:#03A9F4;
+$audio:#3F51B5;
+$video:#37474F;
+$application:#9E9E9E;
+.file-icon{
+    width: 50px;
+    margin-right: 20px;
+    height: 50px;
+    display: flex;
+    color: #fff;
+    font-weight: lighter;
+    font-size:10pt;
+    border-radius: 18px;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-icon.image{
+    background:$image;
+}
+.file-icon.audio{
+    background:$audio;
+}
+.file-icon.video{
+    background:$video;
+}
+.file-icon.application{
+    background:$application;
+}
+
+.icon-sizefull{
+    border-radius:0;
+    border-top-left-radius:$item-radius;
+    border-top-right-radius:$item-radius;
+    // border-left-top-radius:$item-radius;
+    width:100%;
+    padding-top: 50%;
+    padding-bottom:50%;
+    // height:200px;
+}
