@@ -5,17 +5,16 @@ import * as actions from '../actions';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 import Popover from '../components/Popover';
-
 class Header extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.poptoggle = this.poptoggle.bind(this);
+        this.PopoverUser = null;
         this.state = {
             isOpen: false,
             popoverOpen: false
         };
-        this.PopoverUser = null;
       }
     toggle() {
         this.setState({
@@ -35,13 +34,13 @@ class Header extends Component {
                         <Link className="navbar-brand brandlogo" to="/">Easy File Share</Link>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto header-menu" navbar>
-                            <button className="header-item upload">
+                            <button onClick={this.props.dropzone} className="header-item upload">
                                 File Upload
                             </button>
                             <button ref={ ref => this.PopoverUser = ref } onClick={this.poptoggle} className="header-item admin">
                                 {this.props.userid}
                             </button>
-                            <Popover onClose={this.poptoggle} target={this.PopoverUser} className="popover" isOpen={this.state.popoverOpen}>
+                            <Popover position="bottom-right" onResponsive onClose={this.poptoggle} target={this.PopoverUser} className="header-popover" isOpen={this.state.popoverOpen}>
                                 <li>setting</li>
                                 <li onClick={this.props.logoutRequest} >Logout</li>
                             </Popover>
