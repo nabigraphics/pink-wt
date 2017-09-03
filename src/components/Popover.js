@@ -30,7 +30,7 @@ class Popover extends Component {
         this.props.onClose();
     }
     popOpen(){
-        if(window.innerWidth <= 575){
+        if(this.props.onResponsive && window.innerWidth <= 575){
             this.setState({
                 translateX:0,
                 translateY:0
@@ -39,10 +39,27 @@ class Popover extends Component {
         }
         const bt_rect = this.props.target.getBoundingClientRect();
         const pop_rect = this.popover.getBoundingClientRect();
-        this.setState({
-            translateX:(bt_rect.left - pop_rect.width/2 - pop_rect.width/2 + bt_rect.width/2 + 20 ),
-            translateY:(bt_rect.top + bt_rect.height/1.5)
-        })
+        const parent_rect = ReactDOM.findDOMNode(this).parentNode.getBoundingClientRect();
+        switch(this.props.position){
+            case "bottom-right-backup":
+                this.setState({
+                    translateX:(bt_rect.left - pop_rect.width/2 - pop_rect.width/2 + bt_rect.width/2 + 20 ),
+                    translateY:(bt_rect.top + bt_rect.height/1.5)
+                })
+            break;
+            case "bottom-right":
+                this.setState({
+                    translateX:(bt_rect.left - pop_rect.width/2 - pop_rect.width/2 + bt_rect.width/2 + 20 - ( parent_rect.left - 1 ) ),
+                    translateY:(bt_rect.top + bt_rect.height/1.5 - (parent_rect.top - 10))
+                })
+            break;
+            default :
+                this.setState({
+                    translateX:(bt_rect.left - pop_rect.width/2 - pop_rect.width/2 + bt_rect.width/2 + 20 - ( parent_rect.left - 1 ) ),
+                    translateY:(bt_rect.top + bt_rect.height/1.5 - (parent_rect.top - 10))
+                })
+        }
+        return;
     }
     componentWillUnmount(){
         window.removeEventListener("resize", this.handleResizePopover);
@@ -80,7 +97,7 @@ class Popover extends Component {
                 <ul
                 ref={ref => this.popover = ref}
                 style={style}
-                className={ (this.props.className) + " " + (this.props.isOpen ? "active" : "hidden")}
+                className={ (this.props.className) + " popover " + (this.props.isOpen ? "active" : "hidden")}
                 >
                 {this.props.children}
                 </ul>
