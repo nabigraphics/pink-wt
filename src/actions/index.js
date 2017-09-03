@@ -1,6 +1,31 @@
 import * as types from './ActionTypes';
 import axios from 'axios';
 
+//LoadContent.
+
+export function ContentsManager(type,file) {
+  return (dispatch) => {
+    switch(type) {
+      case "add":
+        return dispatch(content_add(file));
+      case "load":
+        return dispatch(content_load(file));
+    }
+  }
+}
+export function content_add(file) {
+  return {
+    type:types.CONTENT_ADD,
+    file
+  }
+}
+export function content_load(file) {
+  return {
+    type:types.CONTENT_LOAD,
+    file
+  }
+}
+
 //Login.
 export function loginRequest(data){
   return (dispatch) => {
