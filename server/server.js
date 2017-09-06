@@ -24,6 +24,7 @@ const redisStore = require('koa-redis');
 const koaParser = require('koa-bodyparser');
 const koaMulter = require('koa-multer');
 const multernyaa = require('./multer');
+const thumbnailnyaa = require('./thumbnail');
 // multer setting.
 
 const storage = koaMulter.diskStorage({
@@ -87,21 +88,21 @@ function LoginCheckMiddleware(ctx,next){
 }
 
 //Authentication router.
-router.post('/login',passport.authenticate('local'), (ctx,next) => {
+router.post('/login',passport.authenticate('local'), async (ctx,next) => {
     ctx.body = {
         status:"success",
         userid:ctx.state.user.userid
     }
 })
 
-router.post('/logout', LoginCheckMiddleware, (ctx,next) => {
+router.post('/logout', LoginCheckMiddleware, async (ctx,next) => {
     ctx.session = null;
     ctx.body = {
         status:"success"
     }
 })
 
-router.post('/auth', LoginCheckMiddleware, (ctx,next) => {
+router.post('/auth', LoginCheckMiddleware, async (ctx,next) => {
     ctx.body = {
         status:"success",
         userid:ctx.state.user.userid
@@ -109,10 +110,32 @@ router.post('/auth', LoginCheckMiddleware, (ctx,next) => {
 })
 //////////////////////////
 
+
 //Upload router.
-router.post('/upload', LoginCheckMiddleware, uploader, (ctx,next) => {
+router.post('/upload', LoginCheckMiddleware, uploader, querynyaa.Insert_FileDB, async (ctx,next) => {
     const hash = ctx.req.file.filename.slice(0,ctx.req.file.filename.lastIndexOf("."));
     ctx.body = {status:"success",hash:hash};
+})
+//////////////////////////
+
+//File Load router.
+router.get('/contents/', LoginCheckMiddleware, async(ctx,next) => {
+    ctx.body = await querynyaa.file_load("all",ctx.state.user.uuid);
+})
+router.get('/contents/:type/:file', LoginCheckMiddleware, async(ctx,next) => {
+    switch(ctx.params.type){
+        case "add":
+            ctx.body = await querynyaa.file_load("add",ctx.state.user.uuid,ctx.params.file);
+        break;
+    }
+})
+//////////////////////////
+
+//Thumbnail Load router.
+
+router.get('/:version/:files/:hash', async (ctx,next) =>{
+    ctx.set('Cache-Control',"max-age=604800, must-revalidate");
+    ctx.body = await thumbnailnyaa.thumb(ctx);
 })
 //////////////////////////
 
