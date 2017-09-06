@@ -7,7 +7,7 @@
     width:calc(100%);
     height:calc(100%);
     position: fixed;
-    z-index: 5;
+    z-index: 999999;
     background:rgba(#fff,0.75);
     padding:20px;
     box-sizing:border-box;
@@ -24,7 +24,7 @@
     width:calc(100% - 40px);
     height:calc(100% - 40px);
     position: fixed;
-    z-index: 5;
+    z-index: 999999;
     border-radius:15px;
     box-sizing:border-box;
     border: 3px dashed rgba($basecolor-black,0.05);
