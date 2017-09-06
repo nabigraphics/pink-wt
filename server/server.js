@@ -122,12 +122,11 @@ router.post('/upload', LoginCheckMiddleware, uploader, querynyaa.Insert_FileDB, 
 router.get('/contents/', LoginCheckMiddleware, async(ctx,next) => {
     ctx.body = await querynyaa.file_load("all",ctx.state.user.uuid);
 })
-router.get('/contents/:type/:file', LoginCheckMiddleware, async(ctx,next) => {
-    switch(ctx.params.type){
-        case "add":
-            ctx.body = await querynyaa.file_load("add",ctx.state.user.uuid,ctx.params.file);
-        break;
-    }
+router.get('/contents/:file', LoginCheckMiddleware, async(ctx,next) => {
+    ctx.body = await querynyaa.file_load("add",ctx.state.user.uuid,ctx.params.file);
+})
+router.delete('/contents/:file', LoginCheckMiddleware, async(ctx,next) => {
+    ctx.body = await querynyaa.file_load("delete",ctx.state.user.uuid,ctx.params.file);
 })
 //////////////////////////
 

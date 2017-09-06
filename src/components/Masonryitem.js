@@ -73,7 +73,7 @@ class Masonryitem extends Component {
                         </div>
                         <Popover position="bottom-right" onClose={() => this.popovertoggle("more") } target={this.MorePopover} className="popover" isOpen={this.state.more_popover}>
                             <li>이름 변경</li>
-                            <li>삭제</li>
+                            <li onClick={() => {this.props.onDelete(hash)}}>삭제</li>
                         </Popover>
                     </div>
                 </div>
@@ -81,5 +81,4 @@ class Masonryitem extends Component {
         );
     }
 }
-
 export default withRouter(Masonryitem);

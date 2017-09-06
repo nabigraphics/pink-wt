@@ -7,9 +7,25 @@ export function ContentsManager(type,file) {
   return (dispatch) => {
     switch(type) {
       case "add":
-        return dispatch(content_add(file));
+        let temp_file;
+        return axios.get(`/contents/${file}`).then((res) => {
+          temp_file = {
+            filename:res.data.filename,
+            filetype:res.data.file_type.split("/")[0],
+            hash:res.data.hash,
+            thumb:res.data.thumb,
+            url:res.data.url
+          }
+          return dispatch(content_add(temp_file));
+        }).catch((err) => { return })
       case "load":
         return dispatch(content_load(file));
+      case "delete":
+        return axios.delete(`/contents/${file}`).then((res) => {
+          if(res.data.status == "success"){
+            return dispatch(content_delete(res.data.hash));
+          }
+        }).catch((err) => { return });
     }
   }
 }
@@ -25,7 +41,12 @@ export function content_load(file) {
     file
   }
 }
-
+export function content_delete(file) {
+  return {
+    type:types.CONTENT_DELETE,
+    file
+  }
+}
 //Login.
 export function loginRequest(data){
   return (dispatch) => {

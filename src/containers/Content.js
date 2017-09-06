@@ -77,6 +77,7 @@ class Content extends Component {
                     <Masonryitem 
                     checked={this.state.checked} 
                     onChecked={this.handleClick} 
+                    onDelete={(hash) => {this.props.delete(hash)}}
                     id={i}
                     key={content.hash} 
                     filename={content.filename} 
@@ -99,7 +100,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) =>{
     return{
-        contentload:(file) => {dispatch(actions.ContentsManager('load',file))}
+        contentload:(file) => {dispatch(actions.ContentsManager('load',file))},
+        delete:(file) => {dispatch(actions.ContentsManager('delete',file))}
     }
 }
 

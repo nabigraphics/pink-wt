@@ -70,18 +70,8 @@ class FileUpload extends Component {
             // notipoi.add('blue',upload_queue, accept.length + "개의 파일 업로드중...");
             Promise.all(accept.map((file,i) => {
                 return this.upload(file,i).then((res) => {
-                    axios.get(`/contents/add/${res.data.hash}`).then((res) => {
-                        const temp_file = {
-                            filename:res.data.filename,
-                            filetype:res.data.file_type.split("/")[0],
-                            hash:res.data.hash,
-                            thumb:res.data.thumb,
-                            url:res.data.url
-                        }
-                        this.props.contentadd(temp_file);
-                    }).catch((err) => {
-                        console.log(err);
-                    })
+                    // console.log(res.data.hash);
+                    this.props.contentadd(res.data.hash);
                 })
             })).then(() => {
                 // notipoi.remove(upload_queue);

@@ -12,6 +12,8 @@ export default function (state = initialState, action){
       return state.set("content",List(action.file));
     case types.CONTENT_ADD:
       return state.set("content",content.unshift(action.file));
+    case types.CONTENT_DELETE:
+      return state.set('content',content.delete(content.findIndex(item => {return item.hash === action.file})));
     default :
       return state;
   }
