@@ -4,7 +4,7 @@ Easy File Share React App.
 ### Client
 
 #### React
-react-dropzone  
+>react-dropzone  
 react-masonry-component  
 react-motion  
 react-redux  
@@ -13,16 +13,16 @@ react-transition-group
 reactstrap  
 
 #### HTTP Request
-axios  
+>axios  
 
 #### Redux
-redux-thunk  
+>redux-thunk  
 immutable  
 redux-devtools-extension  
 ### Server
 
 #### Koa web framework
-koa-bodyparser  
+>koa-bodyparser  
 koa-helmet  
 koa-multer  
 koa-passport  
@@ -34,24 +34,24 @@ koa-webpack
 koa-webpack-middleware  
 
 #### Image Processing System
-gm - GraphicsMagick  
+>gm - GraphicsMagick  
 
 #### Database connect
-promise-mysql  
+>promise-mysql  
 
 #### Session
-redis
+>redis
 
 #### Authentication
-Passport  
+>Passport  
 passport-local  
 
 #### uuidgenerator
-uuid  
+>uuid  
 
 ### Development Environment(?)
 #### webpack
-webpack-dev-server  
+>webpack-dev-server  
 babel-loader  
 node-sass  
 sass-loader  
@@ -61,6 +61,6 @@ autoprefixer
 postcss-loader  
 
 #### babel
-babel-plugin-transform-object-rest-spread  
+>babel-plugin-transform-object-rest-spread  
 babel-preset-es2015  
 babel-preset-react  
