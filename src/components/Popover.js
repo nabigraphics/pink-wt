@@ -97,7 +97,7 @@ class Popover extends Component {
                 <ul
                 ref={ref => this.popover = ref}
                 style={style}
-                className={ (this.props.className) + " popover " + (this.props.isOpen ? "active" : "hidden")}
+                className={ " popover " + (this.props.isOpen ? "active" : "hidden") + " " + (this.props.className)}
                 >
                 {this.props.children}
                 </ul>
