@@ -46,6 +46,11 @@ $item-radius:4px;
         cursor: pointer;
         overflow: hidden;
         position: relative;
+        &:hover{
+            .item-menu{
+                transform: translateY(0px);
+            }
+        }
     }
     .item-content{
         hr{
@@ -90,16 +95,6 @@ $item-radius:4px;
 .item.checked {
     .item-menu{
         transform: translateY(0px);
-    }
-}
-.item:hover{
-
-    .item-menu{
-        transform: translateY(0px);
-    }
-    .item-icon{
-        // filter:opacity(30%);
-        // filter:blur(10px);
     }
 }
 .item-shadow-box{

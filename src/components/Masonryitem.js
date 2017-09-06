@@ -54,7 +54,7 @@ class Masonryitem extends Component {
         const thumb = this.props.thumb;
         return (
             <div className={"item " + this.state.checked + " item-shadow-box"}>
-                <div className="item-" className="item-icon">
+                <div className="item-icon">
                     <Menuoption id={this.props.id} checkboxchkd={this.state.checkedbool} onClick={this.handleClick} />
                     <FileIcon onClick={this.handleClick} icon={type} thumb={thumb ? thumb : false} />
                 </div>
