@@ -30,8 +30,10 @@ class Header extends Component {
         return (
             <div>
                 <Navbar className="header" light toggleable>
-                    <NavbarToggler right onClick={this.toggle} />
+                    <div>
+                        <NavbarToggler right onClick={this.toggle} />
                         <Link className="navbar-brand brandlogo" to="/">Easy File Share</Link>
+                    </div>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto header-menu" navbar>
                             <button onClick={this.props.dropzone} className="header-item upload">
