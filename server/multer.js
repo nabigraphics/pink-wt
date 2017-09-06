@@ -9,11 +9,11 @@ async function mkdirSync (directory) {
         return;
     }
     await fs.mkdir(directory,(err) => {
-        if(err) {
-            console.log(directory + "  ==  err!");
-        }else{
-            console.log(directory + "  ==  ok!");
-        }
+        // if(err) {
+        //     return console.log(directory + "  ==  err!");
+        // }else{
+        //     return console.log(directory + "  ==  ok!");
+        // }
         return;
     })
     return;
