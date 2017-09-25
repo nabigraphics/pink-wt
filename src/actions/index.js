@@ -2,22 +2,33 @@ import * as types from './ActionTypes';
 import axios from 'axios';
 
 //LoadContent.
-
+function content_add_request(file,i,queue){
+  return new Promise((resolve,reject) => {
+    axios.get(`/contents/${file[i]}`).then((res) => {
+      let data = {
+        filename:res.data.filename,
+        filetype:res.data.file_type.split("/")[0],
+        hash:res.data.hash,
+        thumb:res.data.thumb,
+        url:res.data.url
+      }
+      queue.unshift(data);
+      i += 1;
+      if(i == file.length){
+        resolve(queue);
+      }else{
+        resolve(content_add_request(file,i,queue));
+      }
+    }).catch((err) => { reject({status:"error",log:err}) })
+  });
+}
 export function ContentsManager(type,file) {
   return (dispatch) => {
     switch(type) {
       case "add":
-        let temp_file;
-        return axios.get(`/contents/${file}`).then((res) => {
-          temp_file = {
-            filename:res.data.filename,
-            filetype:res.data.file_type.split("/")[0],
-            hash:res.data.hash,
-            thumb:res.data.thumb,
-            url:res.data.url
-          }
-          return dispatch(content_add(temp_file));
-        }).catch((err) => { return })
+        return content_add_request(file,0,new Array()).then((res) => {
+          return dispatch(content_add(res));
+        })
       case "load":
         return dispatch(content_load(file));
       case "delete":

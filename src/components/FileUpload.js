@@ -14,7 +14,7 @@ class FileUpload extends Component {
         this.DropzoneCacheClear = this.DropzoneCacheClear.bind(this);
         this.fileInfoChange = this.fileInfoChange.bind(this);
         this.onDropzone = this.onDropzone.bind(this);
-        this.upload = this.upload.bind(this);
+        // this.upload = this.upload.bind(this);
         this.upload_percent = this.upload_percent.bind(this);
         this.openDropzone = this.openDropzone.bind(this);
         this.state = {
@@ -28,7 +28,6 @@ class FileUpload extends Component {
         this.refs.dropzone.open();
     }
     dropzoneDrag(e,status){
-        // console.log(e.dataTransfer.types[0]);
         switch(status){
             case "Enter":
                 if(e.dataTransfer.types[0] == "Files") this.setState({isOver:true});
@@ -64,40 +63,38 @@ class FileUpload extends Component {
                 this.setState({isUploading:true,files:temp_files});
             }).catch(err => console.log(err));
 
-            //upload notification.
+            //upload
             const upload_queue = "upload_notification_" + new Date();
             const upload_objs = accept.length;
-            // notipoi.add('blue',upload_queue, accept.length + "개의 파일 업로드중...");
-            Promise.all(accept.map((file,i) => {
-                return this.upload(file,i).then((res) => {
-                    // console.log(res.data.hash);
-                    this.props.contentadd(res.data.hash);
-                })
-            })).then(() => {
-                // notipoi.remove(upload_queue);
+            this.upload(accept,0,new Array()).then((res) => {          
+                this.props.contentadd(res.queue);
                 this.setState({isUploading:false});
                 notipoi.add('success',upload_queue + "_ok", upload_objs + "개의 파일 업로드 완료!");
-            }).catch( err => console.log(err));
+            })
         }
     }
-    upload(file,i){
+    upload(file,i,queue){
         return new Promise((resolve,reject) => {
-            // console.log(file);
-            const notiobjname = 'fileupload_'+i+file.name + file.size;
+            const notiobjname = 'fileupload_'+i+file[i].name + file[i].size;
             const fdata = new FormData();
-            fdata.append("file",file,file.name);
+            fdata.append("file",file[i],file[i].name);
             axios.post('/upload',fdata,{
-                onUploadProgress:(progressEvent) => {
-                    let percentCompleted = (progressEvent.loaded * 100) / progressEvent.total;
-                    let temp_files = this.state.files;
-                    temp_files[i].progress = percentCompleted;
-                    this.setState({files:temp_files});
-                    this.upload_percent();
-                }
+            onUploadProgress:(progressEvent) => {
+                let percentCompleted = (progressEvent.loaded * 100) / progressEvent.total;
+                let temp_files = this.state.files;
+                temp_files[i].progress = percentCompleted;
+                this.setState({files:temp_files});
+                this.upload_percent();
+            }
             }).then((res) => {
-                resolve({key:notiobjname,data:res.data});
+                queue.unshift(res.data.hash);
+                if((i+1) == file.length){
+                    resolve({status:"success",queue:queue});
+                }else{
+                    resolve(this.upload(file,(i+1),queue));
+                }
             }).catch( (err) =>{
-                reject(err);
+                reject({status:"error",log:err});
             });
         })
     }
