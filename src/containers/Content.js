@@ -66,6 +66,7 @@ class Content extends Component {
         return (
             
             <div className="content">
+                {/* <Modal type="change"/> */}
                 <Masonry
                 ref={ref => this.masonry = this.masonry || ref.masonry}
                 className={'content-grid'}
@@ -78,6 +79,7 @@ class Content extends Component {
                     checked={this.state.checked} 
                     onChecked={this.handleClick} 
                     onDelete={(hash) => {this.props.delete(hash)}}
+                    onDownload={(hash) => {this.props.download(hash)}}
                     id={i}
                     key={content.hash} 
                     filename={content.filename} 
@@ -101,7 +103,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>{
     return{
         contentload:(file) => {dispatch(actions.ContentsManager('load',file))},
-        delete:(file) => {dispatch(actions.ContentsManager('delete',file))}
+        delete:(file) => {dispatch(actions.ContentsManager('delete',file))},
+        download:(file) => {dispatch(actions.ContentsManager('download',file))}
     }
 }
 

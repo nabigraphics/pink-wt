@@ -37,6 +37,10 @@ export function ContentsManager(type,file) {
             return dispatch(content_delete(res.data.hash));
           }
         }).catch((err) => { return });
+      case "download":
+        return axios.get(`/download/${file}`).then((res) => {
+          console.log(file + "haha!");
+        }).catch((err) => console.log(err));
     }
   }
 }
