@@ -1,4 +1,5 @@
 # easy-file-share
+![preview.png](preview.png)
 Easy File Share React App.  
 누구나! 쉽게!(?!) 파일을 공유할 수 있도록 도와주는 서비스? 프로그램? 입니다.  
 ~~물론..쉽진않지만..db설정이라던가...커맨드라던ㄱ...~~  
