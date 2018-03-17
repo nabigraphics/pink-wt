@@ -1,67 +1,37 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path');
+
+const APP_DIR = path.resolve(__dirname, 'src');
+// const BUILD_DIR = path.resolve(__dirname, 'dist/js');
 module.exports = {
-    entry:{
-      bundle: ['./src/client.js','./src/scss/style.scss']
+    mode: 'development',
+    devtool: 'inline-source-map',
+    entry: {
+        index: [APP_DIR + '/App.jsx'],
     },
     output: {
-        path: __dirname + '/dist/',
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/',
     },
-
-    devServer: {
-        //hot:true,
-        inline: true,
-        //host:"moe.cloud",
-        //port: 25252,
-        contentBase: __dirname + '/dist/',
-        historyApiFallback: true,
-
-        hot:true,
-        port:"3456",
-        proxy: {
-            "**": "http://x.moe.cloud:25253"
-        }
-
+    target: 'web',
+    node: {
+        fs: 'empty'
     },
-
     module: {
-            loaders: [
-                {
-                    test: /\.js$/,
-                    loader: 'babel',
-                    exclude: /node_modules/,
-                    query: {
-                        cacheDirectory: true,
-                        presets: ['es2015', 'react']
-                    }
+        rules: [
+            {
+                test: /\.jsx?/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
                 },
-                {
-                  test: /\.scss$/,
-                  loader: ExtractTextPlugin.extract({
-                      fallback:"style-loader",
-                      use: "css-loader!postcss-loader!sass-loader"
-                    })
-                },
-                {
-                  test:/\.json$/,
-                  loader:'json'
-                },
-                {
-                  test: /\.(ttf|eot|woff|woff2|otf|svg)$/,
-                  loader: 'file',
-                  options: {
-                    name: 'fonts/[name].[ext]',
-                  },
-                }
-            ]
-        },
-    resolveLoader: {
-      moduleExtensions: ["-loader"]
+            }, {
+                test: /\.scss?/,
+                use: ['css-loader', 'postcss-loader', 'sass-loader']
+            }
+        ]
     },
-    plugins: [
-        //new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin("[name].css")
-    ]
-};
+    resolve: {
+        modules: ['node_modules'],
+        extensions: ['.js', '.json', '.jsx', '.css'],
+    }
+}
