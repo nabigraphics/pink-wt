@@ -1,11 +1,9 @@
 const path = require('path');
-
 const APP_DIR = path.resolve(__dirname, 'src');
-// const BUILD_DIR = path.resolve(__dirname, 'dist/js');
 module.exports = {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode: 'production',
     entry: {
+        vender: ['babel-polyfill'],
         index: [APP_DIR + '/App.jsx'],
     },
     output: {
@@ -29,6 +27,9 @@ module.exports = {
                 use: ['css-loader', 'postcss-loader', 'sass-loader']
             }
         ]
+    },
+    optimization:{
+        minimize: true,
     },
     resolve: {
         modules: ['node_modules'],
