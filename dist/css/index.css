@@ -1,0 +1,205 @@
+.content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+.containers {
+  background: #fafafa;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.container.center {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.header {
+  background: #2d3761;
+  height: 64px;
+  line-height: 64px;
+  padding: 0px 50px;
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center; }
+  .header .logo .title {
+    margin-right: 10px;
+    color: white; }
+  .header a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1); }
+    .header a:hover {
+      color: white; }
+
+@media (max-width: 767.98px) {
+  .header {
+    -ms-flex-pack: center;
+        justify-content: center; }
+  .share {
+    display: none; } }
+
+.tag {
+  color: #9cbbfa;
+  font-size: 12px;
+  padding: 4px;
+  display: inline-block;
+  line-height: 1;
+  background: white;
+  border-radius: 4px;
+  word-break: break-all;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(156, 187, 250, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif; }
+
+.tag.outline {
+  background: transparent; }
+
+.upload-title {
+  color: #bfbfbf;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px; }
+
+.upload {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  border-radius: 4px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #7994d4;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  transition: background-color 200ms cubic-bezier(0.645, 0.045, 0.355, 1), transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 1; }
+  .upload:hover {
+    background-color: #9cbbfa;
+    transform: scale(1.05); }
+
+.upload::before {
+  position: absolute;
+  border-radius: 4px;
+  border: 2px dashed #fff;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  content: ""; }
+
+.upload.active {
+  background: #9cbbfa;
+  transform: scale(1.05); }
+
+.upload-small {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 100%;
+  padding: 14px;
+  box-sizing: border-box;
+  background: #7994d4;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  transition: background-color 200ms cubic-bezier(0.645, 0.045, 0.355, 1), transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 999; }
+  .upload-small img {
+    top: -1px;
+    position: relative; }
+  .upload-small:hover {
+    background-color: #9cbbfa;
+    transform: scale(1.05); }
+
+.upload-small.active {
+  background-color: #9cbbfa;
+  transform: scale(1.05); }
+
+.torrentList-ul {
+  margin: 0;
+  list-style: none;
+  height: auto;
+  padding: 0; }
+
+.torrentList-li {
+  border-radius: 4px;
+  background: white;
+  color: black;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.05);
+  margin: 10px; }
+
+.torrentList-delete {
+  width: 58px;
+  height: 58px;
+  line-height: 58px;
+  box-sizing: border-box;
+  right: 0;
+  background: #CAA;
+  text-align: center;
+  cursor: pointer; }
+  .torrentList-delete i {
+    font-size: 16px; }
+
+.torrentList {
+  overflow-x: auto; }
+  .torrentList th, .torrentList td {
+    padding: 15px;
+    text-align: left; }
+  .torrentList th {
+    background-color: #4CAF50;
+    color: white; }
+  .torrentList tr:nth-child(even) {
+    background-color: #f2f2f2; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif; }
+
+#app {
+  width: 100%;
+  height: 100%; }
+
+.dropzone {
+  width: 100%;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.dropzone.small {
+  width: auto;
+  height: auto; }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuL2Nzcy9pbmRleC5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

@@ -8,7 +8,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    // res.send("hello!");
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+})
+
+app.get('/s/:hash', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../dist/index.html'));
 })
 

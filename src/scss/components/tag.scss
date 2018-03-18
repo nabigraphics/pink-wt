@@ -1,0 +1,18 @@
+.tag {
+    // color:white;
+    color: $lightblue-color;
+    font-size: 12px;
+    padding: 4px;
+    display: inline-block;
+    line-height: 1;
+    background: white;
+    border-radius: 4px;
+    word-break: break-all;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba($lightblue-color, 0.3);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+}
+
+.tag.outline {
+    background: transparent;
+}
