@@ -1,10 +1,18 @@
 const path = require('path');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const APP_DIR = path.resolve(__dirname, 'src');
+const SCSS_DIR = path.resolve(__dirname, 'src/scss');
+const extractSass = new ExtractTextPlugin({
+    filename: './css/[name].css',
+});
+
 module.exports = {
     mode: 'production',
     entry: {
         vender: ['babel-polyfill'],
-        index: [APP_DIR + '/App.jsx'],
+        index: [APP_DIR + '/App.jsx', SCSS_DIR + '/index.scss'],
     },
     output: {
         filename: '[name].js',
@@ -23,12 +31,15 @@ module.exports = {
                     loader: "babel-loader"
                 },
             }, {
-                test: /\.scss?/,
-                use: ['css-loader', 'postcss-loader', 'sass-loader']
+                test: /\.(sass|scss)$/,
+                use:extractSass.extract(['css-loader', 'postcss-loader', 'sass-loader'])
             }
         ]
     },
-    optimization:{
+    plugins:[
+        extractSass
+    ],
+    optimization: {
         minimize: true,
     },
     resolve: {

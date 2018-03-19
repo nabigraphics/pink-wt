@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const router = express.Router();
 // API
-const torrentAPI = require('./api/torrentAPI');
+// const torrentAPI = require('./api/torrentAPI');
 const socketAPI = require('./api/socketAPI');
 // Models
 const Share = require('./model/share');
