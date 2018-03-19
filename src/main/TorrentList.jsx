@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from '../components/Table';
+import prettyBytes from 'pretty-bytes';
 
 import { observe, autorun } from 'mobx';
 import { observer, inject } from 'mobx-react';
@@ -34,22 +35,20 @@ class TorrentList extends Component {
                     title: 'Peers',
                     key: 'numPeers',
                 }, {
-                    title: 'Ratio',
-                    key: 'ratio',
-                }, {
                     title: 'Magnet URI',
                     key: 'magnetURI',
                     render: (value, data, index) => {
                         return (
-                            <div>hi!</div>
+                            <a href={data.magnetURI}>마그넷 링크</a>
                         )
                     }
                 }, {
-                    title: 'Torrent File',
-                    key: 'torrentFileBlobURL',
+                    title: 'Share',
+                    key: 'share',
                     render: (value, data, index) => {
+                        if (!data.hash) return null;
                         return (
-                            <div>hi!</div>
+                            <a href={"/s/" + data.hash}>공유</a>
                         )
                     }
                 }
@@ -64,23 +63,21 @@ class TorrentList extends Component {
             let torrents = this.props.torrentStore.torrents;
             if (torrents.length === 0) return;
             let fetchTorrents = torrents.map((torrent, i) => {
-                let { name, downloaded, downloadSpeed, uploaded, uploadSpeed, numPeers, ratio, magnetURI, torrentFileBlobURL } = torrent;
+                let { name, downloaded, downloadSpeed, uploaded, uploadSpeed, numPeers, magnetURI, torrentFileBlobURL, hash } = torrent;
                 return {
                     key: 'torrent_' + i,
                     name,
-                    size: 0,
-                    downloaded,
-                    downloadSpeed,
-                    uploaded,
-                    uploadSpeed,
+                    size: prettyBytes(0),
+                    downloaded: prettyBytes(downloaded),
+                    downloadSpeed: prettyBytes(downloadSpeed),
+                    uploaded: prettyBytes(uploaded),
+                    uploadSpeed: prettyBytes(uploadSpeed),
                     numPeers,
-                    ratio,
                     magnetURI,
-                    torrentFileBlobURL,
+                    hash
                 }
             });
             this.setState({ torrents: fetchTorrents });
-
         })
         // this.interval = setInterval(this.fetchTorrent, 500);
     }
@@ -110,7 +107,7 @@ class TorrentList extends Component {
     }
     render() {
         const { defaultColumns, torrents } = this.state;
-
+        if (torrents.length === 0) return null;
         return (
             // <ul className="torrentList-ul">
             //     {torrents.map((torrent, i) => {

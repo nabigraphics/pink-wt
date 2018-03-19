@@ -15,11 +15,20 @@ class Table extends Component {
                         columns.map((column, i) => {
                             let key = item.key + '_' + column.key + '_' + i;
                             // if(column.render) 
-                            return (
-                                <td key={key}>
-                                    {item[column.key]}
-                                </td>
-                            )
+                            // console.log(column);
+                            if (column.render) {
+                                return (
+                                    <td key={key}>
+                                        {column.render(item[column.key], item, i)}
+                                    </td>
+                                )
+                            } else {
+                                return (
+                                    <td key={key}>
+                                        {item[column.key]}
+                                    </td>
+                                )
+                            }
                         })
                     }
                 </tr>

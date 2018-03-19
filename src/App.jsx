@@ -12,12 +12,13 @@ class App extends Component {
     render() {
         return (
             <Provider {...stores}>
-                <div className="containers">
-                    <Header />
-                    <Main />
-                    {/* <Route exact path="/" component={Main} /> */}
-                    {/* <Route path="/s/:hash" component={Share} /> */}
-                </div>
+                <Router>
+                    <div className="containers">
+                        <Header />
+                        <Route exact path="/" component={Main} />
+                        <Route path="/s/:hash" component={Share} />
+                    </div>
+                </Router>
             </Provider>
         )
     }
