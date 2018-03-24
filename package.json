@@ -9,7 +9,7 @@
     "start": "nodemon server/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
-    "tracker": "bittorrent-tracker"
+    "tracker": "nodemon server/tracker.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
