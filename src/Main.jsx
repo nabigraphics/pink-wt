@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import WebTorrent from 'webtorrent';
-import Dropzone from 'react-dropzone'
+// import WebTorrent from 'webtorrent';
+import Dropzone from 'react-dropzone';
 import classNames from 'classnames';
-import TorrentList from './main/TorrentList';
-// const client = new WebTorrent();
+// import TorrentList from './main/TorrentList';
+import Modal from './components/Modal';
+
 import { observe, autorun } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
 @inject("torrentStore")
 @observer
-
 class Main extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +32,12 @@ class Main extends Component {
     }
 
     onDropzone(accept) {
-        this.props.torrentStore.onSeedTorrent(accept);
+        let opt = {}
+        if (accept.length > 1) {
+            let torrentName = prompt("Torrent Name", "untitleTorrents");
+            opt.name = torrentName;
+        }
+        this.props.torrentStore.onSeedTorrent(accept, opt);
         this.setState({ isDropzoneOver: false });
     }
 

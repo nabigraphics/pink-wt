@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Table from '../components/Table';
-import prettyBytes from 'pretty-bytes';
+import prettyBytes from '../utils/convertBytes';
 
+import textLengthCut from '../utils/textLengthCut';
 import { observe, autorun } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
@@ -14,8 +15,9 @@ class TorrentList extends Component {
         this.state = {
             defaultColumns: [
                 {
-                    title: 'Torrent Name',
+                    title: 'Name',
                     key: 'name',
+                    render: value => <span title={value} className="torrentTitle">{textLengthCut(value,30)}</span>,
                 }, {
                     title: 'Size',
                     key: 'size',
@@ -23,32 +25,34 @@ class TorrentList extends Component {
                     title: 'Downloaded',
                     key: 'downloaded',
                 }, {
-                    title: 'Download Speed',
+                    title: <span><i className="fa fa-arrow-down downloadSpeedIcon" aria-hidden="true"></i> Speed</span>,
                     key: 'downloadSpeed',
                 }, {
                     title: 'Uploaded',
                     key: 'uploaded',
                 }, {
-                    title: 'Upload Speed',
+                    title: <span><i className="fa fa-arrow-up uploadSpeedIcon" aria-hidden="true"></i> Speed</span>,
                     key: 'uploadSpeed',
                 }, {
                     title: 'Peers',
                     key: 'numPeers',
                 }, {
-                    title: 'Magnet URI',
+                    title: 'Magnet',
                     key: 'magnetURI',
+                    width: 60,
                     render: (value, data, index) => {
                         return (
-                            <a href={data.magnetURI}>마그넷 링크</a>
+                            <a href={data.magnetURI}><i className="fa fa-magnet" aria-hidden="true"></i></a>
                         )
                     }
                 }, {
                     title: 'Share',
                     key: 'share',
+                    width: 60,
                     render: (value, data, index) => {
                         if (!data.hash) return null;
                         return (
-                            <a href={"/s/" + data.hash}>공유</a>
+                            <a href={"/s/" + data.hash} target="_blank"><i className="fa fa-share-alt" aria-hidden="true"></i></a>
                         )
                     }
                 }

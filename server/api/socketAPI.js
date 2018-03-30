@@ -5,7 +5,7 @@ module.exports = (socket) => {
     let id = null;
     socket.on('onSeed', data => {
         // console.log(socket.id);
-        
+
         // hash gen.
         let hash = generateHash();
         // query.
@@ -22,6 +22,13 @@ module.exports = (socket) => {
             socket.join(id);
             socket.emit('onSeedResult', query);
         }).catch(err => { console.log(err) });
+    })
+    socket.on('getInfo', data => {
+        let hash = data.hash ? data.hash : null;
+        if (!hash) return;
+        Share.findOne({ hash }).then(result => {
+            socket.emit('getInfoResult', result);
+        })
     })
     socket.on('disconnect', () => {
         if (id) {

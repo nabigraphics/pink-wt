@@ -19,24 +19,30 @@ module.exports = {
         publicPath: '/',
     },
     target: 'web',
-    node: {
-        fs: 'empty'
-    },
+    // node: {
+    //     fs: 'empty'
+
+    // },
+    node: true,
     module: {
         rules: [
             {
+                test: /\.js?/,
+                // exclude: /node_modules/,
+                // include: ['webtorrent'],
+                use: { loader: "babel-loader" },
+            }, {
                 test: /\.jsx?/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                },
+                use: { loader: "babel-loader" },
             }, {
                 test: /\.(sass|scss)$/,
-                use:extractSass.extract(['css-loader', 'postcss-loader', 'sass-loader'])
-            }
+                include: SCSS_DIR,
+                use: extractSass.extract([{ loader: 'css-loader' }, { loader: 'postcss-loader' }, { loader: 'sass-loader' }])
+            },
         ]
     },
-    plugins:[
+    plugins: [
         extractSass
     ],
     optimization: {
