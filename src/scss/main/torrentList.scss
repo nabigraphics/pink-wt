@@ -1,0 +1,110 @@
+.torrentList-ul {
+    margin: 0;
+    list-style: none;
+    height: auto;
+    padding: 0;
+}
+
+.torrentList-li {
+    border-radius: 4px;
+    background: white;
+    color: black;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 4px 18px 0px rgba(black,0.05);
+    margin: 10px;
+}
+
+.torrentList-delete{
+    width: 58px;
+    height: 58px;
+    line-height: 58px;
+    box-sizing: border-box;
+    right: 0;
+    background: #CAA;
+    text-align: center;
+    cursor: pointer;
+    i{
+        font-size: 16px;
+    }
+}
+
+.torrentList {
+    overflow: auto;
+    margin: 10px auto;
+    max-width: 1280px;
+    width: calc(100% - 20px);
+    border-radius: $borderRadius;
+    box-shadow: 0px 4px 8px rgba(black,0.1);
+    .table-responsive {
+        overflow: scroll;
+    }
+    .torrentTitle{
+        text-overflow:ellipsis;
+    }
+    table {
+        width: 100%;
+        border-collapse:collapse;
+        background: white;
+        white-space: nowrap;
+        thead {
+            background:rgba(#fff0f6,0.2);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            color:$title;
+            .downloadSpeedIcon{
+                color:#f5222d;
+            }
+            .uploadSpeedIcon{
+                color:#1890ff;
+            }
+        }
+        thead > tr > th{
+            padding:14px 20px;
+            box-sizing: border-box;
+        }
+        tbody {
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            color:$primary-text;
+        }
+        tbody > tr > td{
+            padding:20px 20px;
+            box-sizing: border-box;
+            // &:hover{
+            //     tbody > tr {
+            //         background-color: #fff0f6;
+            //     }
+            // }
+        }
+        tbody > tr {
+            border-bottom:0.5px solid rgba(black,0.05);
+            transition: background-color 150ms $easeInOutCubic;
+            &:last-child{
+                border-bottom:none;
+            }
+            &:hover{
+                // tbody > tr {
+                    background-color: rgba(#fff0f6,0.65);
+                // }
+            }
+        }
+    }
+    
+    // th {
+    //     height: 50px;
+    // }
+    // th, td {
+    //     padding: 15px;
+    //     text-align: left;
+    // }
+    // th {
+    //     // background-color: #4CAF50;
+    //     // color: white;
+    //     background-color:white;
+    // }
+    // tr:nth-child(even) {background-color: #f2f2f2;}
+}
