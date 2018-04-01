@@ -3,9 +3,13 @@
 @import './components/header';
 @import './components/tag';
 @import './components/button';
+@import './components/progress';
+@import './components/table';
 @import './main/upload';
 @import './main/torrentList';
 @import './share/card';
+@import './share/info';
+@import './share/torrentContent';
 
 html,
 body {
