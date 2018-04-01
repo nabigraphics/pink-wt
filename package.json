@@ -12,6 +12,7 @@
     "tracker": "nodemon server/tracker.js"
   },
   "dependencies": {
+    "async": "^2.6.0",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "bittorrent-tracker": "^9.7.0",
@@ -21,6 +22,7 @@
     "event-source-polyfill": "^0.0.12",
     "express": "^4.16.3",
     "jsmediatags": "^3.8.1",
+    "jszip": "^3.1.5",
     "mobx": "^4.1.0",
     "mobx-react": "^5.0.0",
     "mongoose": "^5.0.10",
