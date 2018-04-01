@@ -14,8 +14,6 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: null,
-            torrents: [],
             isDropzoneOver: false,
         }
     }
@@ -43,13 +41,9 @@ class Main extends Component {
 
     render() {
         const { isDropzoneOver } = this.state;
-        const torrents = this.props.torrentStore.torrents;
-        let isNotNewTorrent = false;
-        if (torrents.length === 0) {
-            isNotNewTorrent = false;
-        } else {
-            isNotNewTorrent = true;
-        }
+        const { torrents } = this.props.torrentStore;
+        let isNotNewTorrent = (torrents.length < 1) ? false : true;
+
         return (
             <div style={{ height: 'calc( 100% - 64px )', overflow: 'auto' }}>
                 <TorrentList />
@@ -71,8 +65,7 @@ class Main extends Component {
 
 function UploadButton(props) {
     const { torrents, active, onClick } = props;
-    let listEmpty = true;
-    if (torrents.length === 0) {
+    if (torrents.length < 1) {
         return (
             <div className="container center">
                 <div className="content">
