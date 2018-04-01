@@ -9,11 +9,11 @@ class Header extends Component {
                 <div className="header">
                     <div className="logo">
                         <span className="title">Easy File Share</span>
-                        <Tag outline title="ver 0.3" />
+                        <Tag outline title="ver 0.6.0" />
                     </div>
                     <div className="share">
                         <a href="https://github.com/nabigraphics/easy-file-share" target="_blank">
-                            <i className="fa fa-github" aria-hidden="true" style={{ fontSize: 24 }}></i>
+                            <i className="icon ion-social-github" style={{ fontSize: 24 }}></i>
                         </a>
                     </div>
                 </div>
