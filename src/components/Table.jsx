@@ -5,11 +5,13 @@ class Table extends Component {
         return columns.map((column, i) => {
             let key = column.key + '_' + i;
             let attrs = { key };
-            if(column.width) attrs.width = column.width;
+            if (column.width) attrs.width = column.width;
+            if (column.align) attrs.align = column.align;
             return <th {...attrs} >{column.title}</th>
         })
     }
     renderData(columns, data) {
+        // console.log(data.length);
         return data.map((item, i) => {
             return (
                 <tr key={item.key}>
@@ -18,13 +20,16 @@ class Table extends Component {
                             let key = item.key + '_' + column.key + '_' + i;
                             // if(column.render) 
                             // console.log(column);
+                            let attrs = { key };
+                            if (column.width) attrs.width = column.width;
+                            if (column.align) attrs.align = column.align;
                             if (column.render) {
                                 return (
-                                    <td key={key}>{column.render(item[column.key], item, i)}</td>
+                                    <td {...attrs}>{column.render(item[column.key], item, i)}</td>
                                 )
                             } else {
                                 return (
-                                    <td key={key}>{item[column.key]}</td>
+                                    <td {...attrs}>{item[column.key]}</td>
                                 )
                             }
                         })
@@ -37,14 +42,23 @@ class Table extends Component {
         const { columns, data } = this.props;
         return (
             <table className="table-responsive">
-                <thead>
-                    <tr>
-                        {this.renderColumn(columns)}
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderData(columns, data)}
-                </tbody>
+                {(columns || columns.length > 0) ?
+                    <thead key="table-thead">
+                        <tr>
+                            {this.renderColumn(columns)}
+                        </tr>
+                    </thead>
+                    :
+                    null
+                }
+                {
+                    (columns && data && columns.length > 0 && data.length > 0) ?
+                        <tbody key="table-tbody">
+                            {this.renderData(columns, data)}
+                        </tbody>
+                        :
+                        null
+                }
             </table>
         );
     }
