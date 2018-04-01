@@ -1,6 +1,5 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 
 const APP_DIR = path.resolve(__dirname, 'src');
 const SCSS_DIR = path.resolve(__dirname, 'src/scss');
@@ -24,7 +23,6 @@ module.exports = {
     node: {
         fs: 'empty'
     },
-    externals: [nodeExternals({ whitelist: ['webtorrent'] })],
     module: {
         rules: [
             {
