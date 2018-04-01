@@ -17,81 +17,59 @@ class TorrentList extends Component {
                 {
                     title: 'Name',
                     key: 'name',
+                    width: 300,
                     render: value => <span title={value} className="torrentTitle">{textLengthCut(value, 30)}</span>,
                 }, {
                     title: 'Size',
                     key: 'length',
+                    width: 140,
                     render: value => prettyBytes(value),
                 }, {
                     title: 'Downloaded',
                     key: 'downloaded',
+                    width: 140,
                     render: value => prettyBytes(value),
                 }, {
-                    title: <span><i className="fa fa-arrow-down downloadSpeedIcon" aria-hidden="true"></i> Speed</span>,
+                    title: <span><i className="icon ion-arrow-down-c downloadSpeedIcon"></i> Speed</span>,
                     key: 'downloadSpeed',
+                    width: 120,
                     render: value => prettyBytes(value),
                 }, {
                     title: 'Uploaded',
                     key: 'uploaded',
+                    width: 130,
                     render: value => prettyBytes(value),
                 }, {
-                    title: <span><i className="fa fa-arrow-up uploadSpeedIcon" aria-hidden="true"></i> Speed</span>,
+                    title: <span><i className="icon ion-arrow-up-c uploadSpeedIcon"></i> Speed</span>,
                     key: 'uploadSpeed',
+                    width: 130,
                     render: value => prettyBytes(value),
                 }, {
                     title: 'Peers',
                     key: 'numPeers',
+                    width: 100,
                 }, {
                     title: 'Magnet',
                     key: 'magnetURI',
-                    width: 60,
+                    width: 100,
                     render: (value, data, index) => {
                         return (
-                            <a href={data.magnetURI}><i className="fa fa-magnet" aria-hidden="true"></i></a>
+                            <a href={data.magnetURI}><i className="icon ion-magnet" style={{ fontSize: 18 }}></i></a>
                         )
                     }
                 }, {
                     title: 'Share',
                     key: 'share',
-                    width: 60,
+                    width: 100,
                     render: (value, data, index) => {
                         if (!data.hash) return <span>wating...</span>
                         return (
-                            <a href={"/s/" + data.hash} target="_blank"><i className="fa fa-share-alt" aria-hidden="true"></i></a>
+                            <a href={"/s/" + data.hash} target="_blank"><i className="icon ion-link" style={{ fontSize: 24 }}></i></a>
                         )
                     }
                 }
             ]
         }
-    }
-    componentDidMount() {
-        // this.fetchTorrent();
-        autorun(() => {
-            let torrents = this.props.torrentStore.torrents;
-            // if(torrents > )
-            // console.log("torrents! ", torrents);
-            // if (torrents.length === 0) return;
-            // let fetchTorrents = torrents.map((torrent, i) => {
-            //     let { name, length, downloaded, downloadSpeed, uploaded, uploadSpeed, numPeers, magnetURI, torrentFileBlobURL, hash } = torrent;
-            //     return {
-            //         key: 'torrent_' + i,
-            //         name,
-            //         length: prettyBytes(length),
-            //         downloaded: prettyBytes(downloaded),
-            //         downloadSpeed: prettyBytes(downloadSpeed),
-            //         uploaded: prettyBytes(uploaded),
-            //         uploadSpeed: prettyBytes(uploadSpeed),
-            //         numPeers,
-            //         magnetURI,
-            //         hash
-            //     }
-            // });
-            // this.setState({ torrents: fetchTorrents });
-        })
-        // this.interval = setInterval(this.fetchTorrent, 500);
-    }
-    componentWillUnmount() {
-        // clearInterval(this.interval);
     }
 
     render() {
