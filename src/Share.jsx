@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 // components.
-import TorrentInfo from './share/TorrentInfo';
 import TorrentContent from './share/TorrentContent';
 
 // mobx
@@ -17,9 +16,6 @@ class Share extends Component {
         const { currentTorrent, torrentInfo } = this.props.torrentStore;
 
         if (!torrentInfo) return null;
-        let finished = currentTorrent ? currentTorrent.finished : false;
-        // if (finished) return <TorrentContent />
-        // else return <TorrentInfo />
         return <TorrentContent />
     }
 }

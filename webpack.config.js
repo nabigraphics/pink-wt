@@ -8,8 +8,6 @@ const extractSass = new ExtractTextPlugin({
     allChunks: true
 });
 
-// const BUILD_DIR = path.resolve(__dirname, 'dist/js');
-
 module.exports = {
     mode: 'development',
     devtool: 'inline-source-map',

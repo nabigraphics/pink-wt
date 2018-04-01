@@ -1,11 +1,11 @@
 const path = require('path');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const APP_DIR = path.resolve(__dirname, 'src');
 const SCSS_DIR = path.resolve(__dirname, 'src/scss');
 const extractSass = new ExtractTextPlugin({
     filename: './css/[name].css',
+    allChunks: true,
 });
 
 module.exports = {
@@ -18,21 +18,17 @@ module.exports = {
         filename: '[name].js',
         publicPath: '/',
     },
-    target: 'web',
-    // node: {
-    //     fs: 'empty'
-
-    // },
-    node: true,
+    node: {
+        fs: 'empty'
+    },
     module: {
         rules: [
             {
-                test: /\.js?/,
-                // exclude: /node_modules/,
-                // include: ['webtorrent'],
+                test: /\.js/,
+                exclude: /node_modules/,
                 use: { loader: "babel-loader" },
             }, {
-                test: /\.jsx?/,
+                test: /\.jsx/,
                 exclude: /node_modules/,
                 use: { loader: "babel-loader" },
             }, {
@@ -50,6 +46,6 @@ module.exports = {
     },
     resolve: {
         modules: ['node_modules'],
-        extensions: ['.js', '.json', '.jsx', '.css'],
+        extensions: ['.js', '.json', '.jsx', '.css', '.scss'],
     }
 }
