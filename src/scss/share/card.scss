@@ -1,5 +1,7 @@
 .card-container {
+    overflow: hidden;
     background: white;
     border-radius: $borderRadius;
     box-shadow: $boxShadow;
+    transition: all 200ms $easeInOutCubic;
 }
