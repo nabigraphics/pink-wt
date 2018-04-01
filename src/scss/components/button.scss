@@ -2,12 +2,48 @@
     cursor: pointer;
     outline: none;
     border: 0;
-    padding:12px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 24px;
     color: white;
     background-color: rgba($primary-color, 0.75);
     border-radius: $borderRadius;
     transition: background-color 200ms $easeInOutCubic;
     &:hover {
         background-color: rgba($primary-color, 1);
+    }
+}
+
+.button.lightBlue {
+    background-color: rgba($lightblue-color, 0.75);
+    &:hover {
+        background-color: rgba($lightblue-color, 1);
+    }
+}
+
+.button.isLoading {
+    cursor: not-allowed;
+    background-color: rgba($primary-color, 0.45);
+    &:hover {
+        background-color: rgba($primary-color, 0.45);
+    }
+    .loading {
+        margin-right: 10px;
+        &::before {
+            animation: spin 1s linear infinite;
+        }
+    }
+}
+
+.button.full {
+    width: 100%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
