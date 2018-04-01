@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import WebTorrent from 'webtorrent';
+import WebTorrent from 'webtorrent';
 import Dropzone from 'react-dropzone';
 import classNames from 'classnames';
-// import TorrentList from './main/TorrentList';
+import TorrentList from './main/TorrentList';
 import Modal from './components/Modal';
 
 import { observe, autorun } from 'mobx';

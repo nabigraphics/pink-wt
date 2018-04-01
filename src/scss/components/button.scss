@@ -1,0 +1,13 @@
+.button {
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    padding:12px;
+    color: white;
+    background-color: rgba($primary-color, 0.75);
+    border-radius: $borderRadius;
+    transition: background-color 200ms $easeInOutCubic;
+    &:hover {
+        background-color: rgba($primary-color, 1);
+    }
+}

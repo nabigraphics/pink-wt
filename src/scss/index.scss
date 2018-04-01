@@ -2,8 +2,11 @@
 @import './layout';
 @import './components/header';
 @import './components/tag';
+@import './components/button';
 @import './main/upload';
 @import './main/torrentList';
+@import './share/card';
+
 html,
 body {
     width: 100%;
