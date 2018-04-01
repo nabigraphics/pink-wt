@@ -5,11 +5,7 @@ import axios from 'axios';
 import shortid from 'shortid';
 import map from 'async/map';
 import config from '../../server/config';
-const TRACKERS = [
-    ["http://tracker.moe.cloud/announce"],
-    ["udp://tracker.moe.cloud/"],
-    ["ws://tracker.moe.cloud/"],
-]
+const TRACKERS = config.TRACKERS
 export default class TorrentStore {
 
     @observable torrents = []
@@ -41,7 +37,7 @@ export default class TorrentStore {
             }
         });
         // connect socket io.
-        this.socket = io.connect('http://localhost:9000/');
+        this.socket = io.connect(config.socketClient);
         this.socket.on('onSeedResult', (data) => {
             console.log(data);
             let hash = data.hash;
