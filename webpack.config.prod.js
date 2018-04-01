@@ -1,11 +1,11 @@
 const path = require('path');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const APP_DIR = path.resolve(__dirname, 'src');
 const SCSS_DIR = path.resolve(__dirname, 'src/scss');
 const extractSass = new ExtractTextPlugin({
     filename: './css/[name].css',
+    allChunks: true,
 });
 
 module.exports = {
@@ -18,25 +18,27 @@ module.exports = {
         filename: '[name].js',
         publicPath: '/',
     },
-    target: 'web',
     node: {
         fs: 'empty'
     },
     module: {
         rules: [
             {
-                test: /\.jsx?/,
+                test: /\.js/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                },
+                use: { loader: "babel-loader" },
+            }, {
+                test: /\.jsx/,
+                exclude: /node_modules/,
+                use: { loader: "babel-loader" },
             }, {
                 test: /\.(sass|scss)$/,
-                use:extractSass.extract(['css-loader', 'postcss-loader', 'sass-loader'])
-            }
+                include: SCSS_DIR,
+                use: extractSass.extract([{ loader: 'css-loader' }, { loader: 'postcss-loader' }, { loader: 'sass-loader' }])
+            },
         ]
     },
-    plugins:[
+    plugins: [
         extractSass
     ],
     optimization: {
@@ -44,6 +46,6 @@ module.exports = {
     },
     resolve: {
         modules: ['node_modules'],
-        extensions: ['.js', '.json', '.jsx', '.css'],
+        extensions: ['.js', '.json', '.jsx', '.css', '.scss'],
     }
 }

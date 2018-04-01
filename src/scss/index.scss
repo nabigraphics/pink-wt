@@ -2,12 +2,19 @@
 @import './layout';
 @import './components/header';
 @import './components/tag';
+@import './components/button';
+@import './components/progress';
+@import './components/table';
 @import './main/upload';
 @import './main/torrentList';
+@import './share/card';
+@import './share/info';
+@import './share/torrentContent';
+
 html,
 body {
     width: 100%;
-    height: 100%; // font-family: 'Open Sans', sans-serif;
+    height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
 }
 

@@ -7,6 +7,7 @@ let Share = mongoose.Schema({
     announce: { type: Array, index: true },
     infoHash: { type: String, index: true },
     magnetURI: String,
+    length: Number,
     id: { type: String, index: true },
     created_date: { type: Date, index: true, default: Date.now },
 })

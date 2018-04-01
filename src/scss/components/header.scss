@@ -1,12 +1,12 @@
 .header {
-    background: $header-color;
-    height: 64px;
-    line-height: 64px;
     padding: 0px 50px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1280px;
+    width: 100%;
+    margin: auto;
     .logo {
         .title {
             margin-right: 10px;
@@ -31,4 +31,10 @@
     .share {
         display: none;
     }
+}
+
+.header-bg {
+    background: $header-color;
+    height: 64px;
+    line-height: 64px;
 }

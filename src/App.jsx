@@ -4,10 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './Main';
 import Share from './Share';
 import Header from './components/Header';
-//Mobx React & Store.
+// Mobx React & Store.
 import { Provider } from 'mobx-react';
 import stores from './store';
-
 class App extends Component {
     render() {
         return (
