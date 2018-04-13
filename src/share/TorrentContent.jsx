@@ -38,6 +38,7 @@ class TorrentContent extends Component {
                     key: 'name',
                     width: 300,
                     align: 'left',
+                    render: value => <span title={value}>{textLengthCut(value,30)}</span>,
                 }, {
                     title: 'Size',
                     key: 'length',
