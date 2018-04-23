@@ -8,7 +8,8 @@
     "start": "nodemon server/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
-    "tracker": "nodemon server/tracker.js"
+    "tracker": "nodemon server/tracker.js",
+    "sba":"webpack --mode production --module-bind js=babel-loader"
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -52,6 +53,7 @@
     "postcss-loader": "^2.1.1",
     "sass-loader": "^6.0.7",
     "webpack": "^4.1.1",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.12",
     "webpack-node-externals": "^1.6.0"
   }
