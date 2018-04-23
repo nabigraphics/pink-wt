@@ -1,8 +1,7 @@
 services: mongodb
 language: node_js
 node_js:
-  - "node"
   - "v9.6.1"
 before_install:
-  - "npm install -g webpack"
+  - "npm install -g webpack webpack-cli"
   - "npm install"
