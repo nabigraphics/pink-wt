@@ -31,6 +31,7 @@ class Main extends Component {
 
     onDropzone(accept) {
         let opt = {}
+        this.props.torrentStore.setLoading(true);
         if (accept.length > 1) {
             let torrentName = prompt("Torrent Name", "untitleTorrents");
             opt.name = torrentName;
@@ -41,7 +42,7 @@ class Main extends Component {
 
     render() {
         const { isDropzoneOver } = this.state;
-        const { torrents } = this.props.torrentStore;
+        const { torrents, isLoading } = this.props.torrentStore;
         let isNotNewTorrent = (torrents.length < 1) ? false : true;
 
         return (
@@ -56,7 +57,7 @@ class Main extends Component {
                     onDropAccepted={(accept) => { this.onDropzone(accept) }}
                     ref={dropzone => { this.dropezone = dropzone }}
                 >
-                    <UploadButton torrents={torrents} active={isDropzoneOver} onClick={() => this.dropezone.open()} />
+                    <UploadButton isLoading={isLoading} torrents={torrents} active={isDropzoneOver} onClick={() => this.dropezone.open()} />
                 </Dropzone>
             </div>
         );
@@ -64,13 +65,14 @@ class Main extends Component {
 }
 
 function UploadButton(props) {
-    const { torrents, active, onClick } = props;
+    const { torrents, active, onClick, isLoading } = props;
     if (torrents.length < 1) {
         return (
             <div className="container center">
                 <div className="content">
                     <div className={classNames('upload', { active: active })} onClick={onClick}>
-                        <img src="/logo.svg" />
+                        <LoadingCircle isLoading={isLoading} />
+                        <img className={classNames('upload-icon', { isLoading })} src="/logo.svg" />
                     </div>
                     <h1 className="upload-title">Drag and Drop files here.</h1>
                 </div>
@@ -79,10 +81,15 @@ function UploadButton(props) {
     } else {
         return (
             <div className={classNames('upload-small', { active: active })} onClick={onClick}>
-                <img src="/logo.svg" />
+                <LoadingCircle isLoading={isLoading} />
+                <img className={classNames('upload-icon', { isLoading })} src="/logo.svg" />
             </div>
         )
     }
 }
 
+function LoadingCircle(props) {
+    const { isLoading } = props;
+    return <i className={classNames("loadingbar", { active: isLoading }, "icon ion-load-c")} ></i>
+}
 export default Main;
