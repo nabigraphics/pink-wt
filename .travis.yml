@@ -5,5 +5,4 @@ node_js:
   - "v9.6.1"
 before_install:
   - "npm install -g webpack"
-install:
-  - "npm"
+  - "npm install"
