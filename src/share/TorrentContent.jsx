@@ -38,6 +38,7 @@ class TorrentContent extends Component {
                     key: 'name',
                     width: 300,
                     align: 'left',
+                    render: value => <span title={value}>{textLengthCut(value,30)}</span>,
                 }, {
                     title: 'Size',
                     key: 'length',
@@ -86,7 +87,7 @@ class TorrentContent extends Component {
                 <div className="torrentContent">
                     <div className="left-containers">
                         <span className="info-header">Info</span>
-                        <div style={{ padding: 10 }}>
+                        <div style={{ padding: 10, overflowY:'auto' }}>
                             <Info title="Torrent Name" content={torrentInfo.name} />
                             <Info title="Size" content={size} />
                             <Info title="Downloaded" content={prettyBytes(downloaded)} />

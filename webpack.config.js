@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const APP_DIR = path.resolve(__dirname, 'src');
 const SCSS_DIR = path.resolve(__dirname, 'src/scss');
@@ -38,7 +39,8 @@ module.exports = {
         ]
     },
     plugins: [
-        extractSass
+        extractSass,
+        // new BundleAnalyzerPlugin()
     ],
     resolve: {
         modules: ['node_modules'],
