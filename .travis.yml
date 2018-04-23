@@ -15,9 +15,7 @@ node_js:
   - "v9.6.1"
 before_install:
   - "npm install -g webpack webpack-cli"
-install:
-  - "npm install node-sass"
-
+  - "npm rebuild node-sass"
 cache:
   directories:
     - $HOME/.node-gyp
