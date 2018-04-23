@@ -1,15 +1,15 @@
 {
-  "name": "easy-file-share",
+  "name": "Easy WT",
   "version": "0.8.0",
-  "repository": "https://github.com/nabigraphics/easy-file-share.git",
+  "repository": "https://github.com/nabigraphics/easy-wt.git",
   "author": "nabigraphics <hbh2692@naver.com>",
   "license": "MIT",
   "scripts": {
+    "test":"webpack --config webpack.config.prod.js",
     "start": "nodemon server/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
     "tracker": "nodemon server/tracker.js",
-    "sba":"webpack --mode production --module-bind js=babel-loader"
   },
   "dependencies": {
     "async": "^2.6.0",
