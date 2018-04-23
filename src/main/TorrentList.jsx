@@ -8,7 +8,6 @@ import { observer, inject } from 'mobx-react';
 
 @inject("torrentStore")
 @observer
-
 class TorrentList extends Component {
     constructor(props) {
         super(props);
@@ -64,14 +63,16 @@ class TorrentList extends Component {
                     render: (value, data, index) => {
                         if (!data.hash) return <span>wating...</span>
                         return (
-                            <a href={"/s/" + data.hash} target="_blank"><i className="icon ion-link" style={{ fontSize: 24 }}></i></a>
+                            <a href={"/s/" + data.hash} target="_blank"><i className="icon ion-link" style={{ fontSize: 22 }}></i></a>
                         )
                     }
                 }
             ]
         }
     }
-
+    componentDidMount(){
+        const { torrents } = this.props.torrentStore;
+    }
     render() {
         const { defaultColumns } = this.state;
         const { torrents } = this.props.torrentStore;

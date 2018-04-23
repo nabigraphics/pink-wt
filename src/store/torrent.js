@@ -5,7 +5,8 @@ import axios from 'axios';
 import shortid from 'shortid';
 import map from 'async/map';
 import config from '../../server/config';
-const TRACKERS = config.TRACKERS
+const TRACKERS = config.TRACKERS;
+
 export default class TorrentStore {
 
     @observable torrents = []
@@ -21,6 +22,7 @@ export default class TorrentStore {
         uploadSpeed: 0,
     }
     @observable currentTorrentFiles = []
+    @observable isLoading = false
 
     constructor() {
         this.initialize();
@@ -50,9 +52,6 @@ export default class TorrentStore {
         })
         this.client.on('error', (err) => {
             console.log("에러!");
-        })
-        this.client.on('torrent', function (torrent) {
-            // console.log(torrent);
         })
     }
 
@@ -85,49 +84,6 @@ export default class TorrentStore {
             progress,
             numPeers,
         }
-        // map(torrent.files, (file, callback) => {
-        //     // console.log(file);
-        //     let data = {
-        //         done: file.done,
-        //         key: shortid.generate(),
-        //         name: file.name,
-        //         length: file.length,
-        //         progress: file.progress,
-        //     }
-        //     callback(null, data);
-        //     // if (file.done) {
-        //     //     file.getBlob((err, blob) => {
-        //     //         data.blob = blob;
-        //     //         file.getBlobURL((err, url) => {
-        //     //             data.url = url;
-        //     //             callback(null, data);
-        //     //         })
-        //     //     })
-        //     // } else {
-        //     //     callback(null, data);
-        //     // }
-        // }, (err, results) => {
-        //     if (err) return console.log(err);
-        //     // console.log(results);
-        //     // this.currentTorrent.files = results;
-        //     this.currentTorrent = {
-        //         ...this.currentTorrent,
-        //         name,
-        //         infoHash,
-        //         magnetURI,
-        //         torrentFileBlobURL,
-        //         timeRemaining,
-        //         downloaded,
-        //         uploaded,
-        //         downloadSpeed,
-        //         uploadSpeed,
-        //         progress,
-        //         numPeers,
-        //         files: results
-        //     }
-        // })
-
-        // console.log(this.currentTorrent);
     }
     seedTorrentUpdate(infoHash, torrent) {
         let findIndex = this.torrents.findIndex((torrent) => torrent.infoHash === infoHash);
@@ -176,7 +132,9 @@ export default class TorrentStore {
     // Seed Actions
     @action onSeedTorrent(files, options) {
         options.announce = TRACKERS;
+        // console.log("seeding");
         this.client.seed(files, options, torrent => {
+            console.log("seeding");
             // socket emit query.
             let data = {
                 name: torrent.name,
@@ -186,7 +144,11 @@ export default class TorrentStore {
                 length: torrent.length,
             }
             this.socket.emit('onSeed', data);
-
+            this.setLoading(false); 
+            // torrent.on('ready',() =>{
+            //     console.log("done!");
+            //     this.setLoading(false);
+            // })
             // new torrent query.
             const {
                 name,
@@ -302,7 +264,12 @@ export default class TorrentStore {
             });
         })
     }
+
     @action getInfo(hash) {
         this.socket.emit('getInfo', { hash });
+    }
+
+    @action setLoading(bool){
+        this.isLoading = bool;
     }
 }
