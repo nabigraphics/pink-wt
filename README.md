@@ -1,4 +1,4 @@
-![easywt-haeder.png](easywt-haeder.png)  
+![easywt](https://github.com/nabigraphics/easy-wt/blob/webtorrent/easywt-header.png?raw=true)  
 
 # Install
 git Clone.
