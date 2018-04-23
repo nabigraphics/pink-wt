@@ -5,7 +5,7 @@
   "author": "nabigraphics <hbh2692@naver.com>",
   "license": "MIT",
   "scripts": {
-    "test":"webpack --config webpack.config.prod.js",
+    "test":"node test.js",
     "start": "nodemon server/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
