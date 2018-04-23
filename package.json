@@ -1,6 +1,6 @@
 {
   "name": "easy-file-share",
-  "version": "0.6.0",
+  "version": "0.8.0",
   "main": "index.js",
   "repository": "https://github.com/nabigraphics/easy-file-share.git",
   "author": "nabigraphics <hbh2692@naver.com>",

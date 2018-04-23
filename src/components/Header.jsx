@@ -8,8 +8,9 @@ class Header extends Component {
             <div className="header-bg">
                 <div className="header">
                     <div className="logo">
+                        <img className="header-logo-image" src="/logo.svg"/>
                         <span className="title">Easy File Share</span>
-                        <Tag outline title="ver 0.6.0" />
+                        <Tag outline title="ver 0.8.0" />
                     </div>
                     <div className="share">
                         <a href="https://github.com/nabigraphics/easy-file-share" target="_blank">
