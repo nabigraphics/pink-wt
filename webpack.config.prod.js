@@ -43,6 +43,8 @@ module.exports = {
     ],
     optimization: {
         minimize: true,
+        removeEmptyChunks: true,
+        mergeDuplicateChunks: true,
     },
     resolve: {
         modules: ['node_modules'],
