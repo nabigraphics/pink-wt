@@ -1,5 +1,5 @@
 ![easywt](https://github.com/nabigraphics/easy-wt/blob/webtorrent/easywt-header.png?raw=true)  
-
+[![Build Status](https://travis-ci.org/nabigraphics/easy-wt.svg?branch=master)](https://travis-ci.org/nabigraphics/easy-wt)
 # Install
 git Clone.
 
