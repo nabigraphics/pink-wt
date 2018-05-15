@@ -28,6 +28,11 @@
         margin-right: 10px;
         vertical-align: middle;
     }
+    .share{
+        i{
+            color:$primary-color;
+        }
+    }
 }
 
 // Small devices (landscape phones, less than 768px)
@@ -50,5 +55,5 @@
     background: $header-color;
     height: 64px;
     line-height: 64px;
-    box-shadow: 0px 4px 8px rgba(black,0.1);
+    box-shadow: 0px 4px 8px rgba(black,0.015);
 }

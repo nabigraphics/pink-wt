@@ -1,3 +1,4 @@
+@import "../hsb";
 .upload-title {
     color: #bfbfbf;
     font-size: 24px;
@@ -13,25 +14,26 @@
     border-radius: 4px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: $primary-color;
+    background-color: white;
     cursor: pointer;
     width: 100%;
     max-width: 400px;
     transition: background-color 200ms $easeInOutCubic, transform 200ms $easeInOutCubic;
     z-index: 1;
     &:hover {
-        background-color: $lightblue-color;
+        background-color:white;
         transform: scale(1.05);
     }
-    .upload-icon{
+    .upload-icon {
+        padding: 10px;
         transition: opacity 0.5s $easeInOutCubic;
     }
-    .upload-icon.isLoading{
+    .upload-icon.isLoading {
         opacity: 0;
     }
-    .loadingbar{
+    .loadingbar {
         opacity: 0;
-        color: white;
+        color: $pink-color;
         line-height: 0px;
         width: 64px;
         height: 64px;
@@ -43,7 +45,7 @@
         animation: spin 1s linear infinite;
         transition: opacity 0.5s $easeInOutCubic;
     }
-    .loadingbar.active{
+    .loadingbar.active {
         opacity: 1;
     }
 }
@@ -51,7 +53,7 @@
 .upload::before {
     position: absolute;
     border-radius: 4px;
-    border: 2px dashed #fff;
+    border: 2px dashed hsb($pink-h, $pink-s, $pink-b, 0.15);
     left: 10px;
     right: 10px;
     top: 10px;
@@ -60,7 +62,7 @@
 }
 
 .upload.active {
-    background: $lightblue-color;
+    background: $lightpink-color;
     transform: scale(1.05);
 }
 
@@ -73,29 +75,31 @@
     border-radius: 100%;
     padding: 14px;
     box-sizing: border-box;
-    background: #7994d4;
+    background: white;
     cursor: pointer;
     width: 60px;
     height: 60px;
     transition: background-color 200ms cubic-bezier(0.645, 0.045, 0.355, 1), transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
     z-index: 999;
     img {
-        top: -1px;
+        top: 25%;
         position: relative;
+        width:100%;
     }
     &:hover {
-        background-color: $lightblue-color;
+        background-color: white;
         transform: scale(1.05);
     }
-    .upload-icon{
+    .upload-icon {
+        padding:0;
         transition: opacity 0.5s $easeInOutCubic;
     }
-    .upload-icon.isLoading{
+    .upload-icon.isLoading {
         opacity: 0;
     }
-    .loadingbar{
+    .loadingbar {
         opacity: 0;
-        color:white;
+        color: white;
         line-height: 0px;
         width: 32px;
         height: 32px;
@@ -107,17 +111,21 @@
         animation: spin 1s linear infinite;
         transition: opacity 0.5s $easeInOutCubic;
     }
-    .loadingbar.active{
+    .loadingbar.active {
         opacity: 1;
     }
 }
 
 .upload-small.active {
-    background-color: $lightblue-color;
+    background-color: $lightpink-color;
     transform: scale(1.05);
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

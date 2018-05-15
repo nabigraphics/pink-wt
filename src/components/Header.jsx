@@ -9,8 +9,7 @@ class Header extends Component {
                 <div className="header">
                     <div className="logo">
                         <img className="header-logo-image" src="/logo.svg"/>
-                        <span className="title">Easy-WT</span>
-                        <Tag outline title="ver 0.8.0" />
+                        <Tag outline title="ver 0.9.0" />
                     </div>
                     <div className="share">
                         <a href="https://github.com/nabigraphics/easy-wt" target="_blank">

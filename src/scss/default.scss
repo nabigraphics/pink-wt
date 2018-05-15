@@ -1,9 +1,15 @@
-$lightblue-color:#9cbbfa;
-// $blue-color:#3578ff;
+@import "./hsb";
+$pink-h:326.14;
+$pink-s:67.96;
+$pink-b:80.78;
+$pink-color:hsb($pink-h, $pink-s, $pink-b);
+$lightpink-color:#DB7282;
 $blue-color:#7994d4;
-$header-color:#2d3761;
+$header-color:white;
 // $header-color:#405087;
-$primary-color:$blue-color;
+// $primary-color:$blue-color;
+
+$primary-color:$pink-color;
 
 $grey1:#ffffff;
 $grey2:#fafafa;

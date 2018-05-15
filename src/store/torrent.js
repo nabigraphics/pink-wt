@@ -144,7 +144,7 @@ export default class TorrentStore {
                 length: torrent.length,
             }
             this.socket.emit('onSeed', data);
-            this.setLoading(false); 
+            this.setLoading(false);
             // torrent.on('ready',() =>{
             //     console.log("done!");
             //     this.setLoading(false);
@@ -269,7 +269,7 @@ export default class TorrentStore {
         this.socket.emit('getInfo', { hash });
     }
 
-    @action setLoading(bool){
+    @action setLoading(bool) {
         this.isLoading = bool;
     }
 }
