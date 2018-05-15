@@ -20,7 +20,7 @@ $ npm run build         // webpack production build.
 
 ## server/config.js
 ```
-{
+module.exports = {
     port:Number,
     socket:Number,
     socketClient:String,
@@ -43,7 +43,7 @@ mongoose connect URL
 
 ## Example config file.
 ```
-{
+module.exports = {
     port:25252,
     socket:9000,
     socketClient:"http://localhost:9000/",
