@@ -1,12 +1,14 @@
 {
   "name": "pink-wt",
-  "version": "0.9.0",
+  "description": "Easy WebTorrent Sharing with React Web Application",
+  "version": "0.9.1",
   "repository": "https://github.com/nabigraphics/pink-wt.git",
   "author": "nabigraphics <hbh2692@naver.com>",
   "license": "MIT",
   "scripts": {
     "test":"node test.js",
-    "start": "nodemon server/app.js",
+    "dev-server": "nodemon server/app.js",
+    "start":"node start/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
     "tracker": "nodemon server/tracker.js"
