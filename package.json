@@ -6,9 +6,9 @@
   "author": "nabigraphics <hbh2692@naver.com>",
   "license": "MIT",
   "scripts": {
-    "test":"node test.js",
+    "test": "node test.js",
     "dev-server": "nodemon server/app.js",
-    "start":"node server/app.js",
+    "start": "node server/app.js",
     "dev": "webpack --w",
     "build": "webpack --config webpack.config.prod.js",
     "tracker": "nodemon server/tracker.js"
