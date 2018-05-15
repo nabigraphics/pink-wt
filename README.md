@@ -1,15 +1,24 @@
 ![pinkwt](https://github.com/nabigraphics/pink-wt/blob/master/easywt-header.png?raw=true)  
 [![Build Status](https://travis-ci.org/nabigraphics/pink-wt.svg?branch=master)](https://travis-ci.org/nabigraphics/pink-wt)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
-# Install
-git Clone.
 
-# Usage
+# Start
+```
+$ git clone https://github.com/nabigraphics/pink-wt
+$ cd pink-wt
+$ touch server/config.js
+$ npm start
+```
 
+# Scripts
+```
+$ npm run dev-server    // development nodemon server start.
+$ npm run dev           // webpack development bundling.
+$ npm run start         // server start.
+$ npm run build         // webpack production build.
+```
 
-# Config
-
-### server/config.js
+## server/config.js
 ```
 {
     port:Number,
@@ -19,7 +28,20 @@ git Clone.
     TRACKERS:Array, 
 }
 ```
-### Example
+### port `Type:Number`
+Application Port
+
+### socket `Type:Number`
+Socket.io Port
+
+### socketClient `Type:String`
+socket.io client connect URL
+
+### mongoDB `Type:String`
+mongoose connect URL  
+? [mongoose Getting Started](http://mongoosejs.com/docs/index.html)
+
+## Example config file.
 ```
 {
     port:25252,
@@ -36,4 +58,4 @@ git Clone.
         ["wss://tracker.fastcast.nz"],
     ]
 }
-``` 
+```
