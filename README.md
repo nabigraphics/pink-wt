@@ -1,5 +1,5 @@
-![easywt](https://github.com/nabigraphics/easy-wt/blob/webtorrent/easywt-header.png?raw=true)  
-[![Build Status](https://travis-ci.org/nabigraphics/easy-wt.svg?branch=master)](https://travis-ci.org/nabigraphics/easy-wt)
+![pinkwt](https://github.com/nabigraphics/pink-wt/blob/master/easywt-header.png?raw=true)  
+[![Build Status](https://travis-ci.org/nabigraphics/pink-wt.svg?branch=master)](https://travis-ci.org/nabigraphics/pink-wt)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 # Install
 git Clone.
