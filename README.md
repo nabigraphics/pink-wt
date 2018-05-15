@@ -6,7 +6,9 @@
 ```
 $ git clone https://github.com/nabigraphics/pink-wt
 $ cd pink-wt
+$ npm install
 $ touch server/config.js
+$ npm run build
 $ npm start
 ```
 
