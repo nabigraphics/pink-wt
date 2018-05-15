@@ -1,1 +1,4 @@
 server/config.js
+node_modules/*
+dist/*.js
+dist/css/index.css
